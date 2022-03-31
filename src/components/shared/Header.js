@@ -17,6 +17,11 @@ const alwaysOptions = (
 				Home
 			</Link>
 		</Nav.Link>
+		<Nav.Item className="m-2">
+			<Link to='addRestaurant' style={linkStyle}>
+				Add New Restaurant
+			</Link>
+		</Nav.Item>
 	</>
 )
 

@@ -15,6 +15,15 @@ export const getRestaurant = (restaurantId) => {
 
 // POST -> create function
 
+export const addRestaurant = (newRestaurant) => {
+    return axios({
+        url: `${apiUrl}/restaurants`,
+        method: 'POST',
+        data: { restaurant: newRestaurant }
+    })
+}
+
+
 
 // PATCH -> update function
 
