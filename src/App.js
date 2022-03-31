@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid'
 
 import Header from './components/shared/Header'
 import Home from './components/Home'
+import ShowRestaurant from './components/restaurants/ShowRestaurant'
 
 const App = () => {
 
@@ -33,6 +34,10 @@ const App = () => {
 				<Header />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} />} />
+					<Route
+					path='/restaurants/:id'
+					element={<ShowRestaurant />}
+				/>
 				</Routes>
 			</Fragment>
 		)

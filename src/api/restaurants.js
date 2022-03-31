@@ -8,6 +8,10 @@ export const getAllRestaurants = () => {
 
 // show function
 
+export const getRestaurant = (restaurantId) => {
+    return axios(`${apiUrl}/restaurants/${restaurantId}`)
+}
+
 
 // POST -> create function
 

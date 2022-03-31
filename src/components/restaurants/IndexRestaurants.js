@@ -31,11 +31,11 @@ const IndexRestaurants = (props) => {
 
     if (restaurants.length > 0) {
         restaurantCards = restaurants.map(restaurant => (
-            <Card key={restaurant.id} style={{ width: '30%' }} className="m-2">
+            <Card key={restaurant._id} style={{ width: '30%' }} className="m-2">
                 <Card.Header>{restaurant.name}</Card.Header>
                 <Card.Body>
                     <Card.Text>
-                        <Link to={`/restaurants/${restaurant.id}`}>View {restaurant.name}</Link>
+                        <Link to={`/restaurants/${restaurant._id}`}>View {restaurant.name}</Link>
                     </Card.Text>
                 </Card.Body>
             </Card>
