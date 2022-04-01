@@ -27,5 +27,14 @@ export const addRestaurant = (newRestaurant) => {
 
 // PATCH -> update function
 
+export const updateRestaurant = (updatedRestaurant) => {
+
+    return axios({
+        url: `${apiUrl}/restaurants/${updatedRestaurant._id}`,
+        method: 'PATCH',
+        data: { restaurant: updatedRestaurant }
+    })
+}
+
 
 // DELETE -> remove function

@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {getRestaurant} from '../../api/restaurants'
+import {getRestaurant, updateRestaurant} from '../../api/restaurants'
 import { Spinner, Container, Card, Button } from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
+import EditRModal from './EditRModal'
 
 // styling object for cards
 const cardContainerLayout = {
@@ -12,7 +13,10 @@ const cardContainerLayout = {
 
 const ShowRestaurant = (props) => {
     const [restaurant,setRestaurant] =useState(null)
+    const [modalOpen, setModalOpen] = useState(false)
+    const [updated, setUpdated] = useState(false)
     const {id} = useParams()
+    const navigate = useNavigate()
 
     
 
@@ -22,7 +26,7 @@ const ShowRestaurant = (props) => {
                 setRestaurant(res.data.restaurant)
             })
             .catch(console.error)
-    }, [])
+    }, [updated])
 
     if (!restaurant) {
         return (
@@ -49,8 +53,24 @@ const ShowRestaurant = (props) => {
                             <small>Yelp Rating: {restaurant.yelp_rating}/5</small><br/>
                         </Card.Text>
                     </Card.Body>
+                    <Card.Footer>
+                        <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
+                            Edit Restaurant
+                        </Button>
+                        <Button className="m-2" variant="danger">
+                            Delete Resaurant
+                        </Button>
+
+                    </Card.Footer>
                 </Card>
             </Container>
+            <EditRModal
+                restaurant={restaurant}
+                show={modalOpen}
+                triggerRefresh={()=> setUpdated(prev=> !prev)}
+                updateRestaurant={updateRestaurant}
+                handleClose={()=> setModalOpen(false)}
+                />
          </>
     )
 }
