@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {getRestaurant, updateRestaurant} from '../../api/restaurants'
+import {getRestaurant, updateRestaurant, removeRestaurant} from '../../api/restaurants'
 import { Spinner, Container, Card, Button } from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom'
 import EditRModal from './EditRModal'
@@ -27,6 +27,14 @@ const ShowRestaurant = (props) => {
             })
             .catch(console.error)
     }, [updated])
+
+    const destroyRestaurant = () => {
+        removeRestaurant(id)
+            .then(() => {navigate(`/`)})
+            // catch any errors
+            .catch(console.error)
+    }
+
 
     if (!restaurant) {
         return (
@@ -57,7 +65,7 @@ const ShowRestaurant = (props) => {
                         <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
                             Edit Restaurant
                         </Button>
-                        <Button className="m-2" variant="danger">
+                        <Button onClick={() => destroyRestaurant()} className="m-2" variant="danger">
                             Delete Resaurant
                         </Button>
 

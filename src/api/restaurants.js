@@ -38,3 +38,9 @@ export const updateRestaurant = (updatedRestaurant) => {
 
 
 // DELETE -> remove function
+export const removeRestaurant = (restaurantId) => {
+    return axios({
+        url: `${apiUrl}/restaurants/${restaurantId}`,
+        method: 'DELETE'
+    })
+}
